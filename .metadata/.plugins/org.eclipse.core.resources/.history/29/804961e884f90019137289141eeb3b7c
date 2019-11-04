@@ -1,0 +1,54 @@
+package game;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import javax.swing.JFrame;
+
+public class Game extends JFrame {
+
+	BufferedImage backBuffer; // ESSE É O NOSSO BUFFER
+	public int FPS = 30; // ESSA É A TAXA DE ATUALIZAÇÃO DA TELA
+	int janelaW = 500; // LARGURA DA TELA
+	int janelaH = 500; // ALTURA DA TELA
+
+	// NO NOSSO METODO ATUALIZAR VAMOS CHAMAR OS METODOS
+	// QUE SERÃO EXECUTADOS O TEMPO INTEIRO...
+	public void atualizar() {
+
+	}
+
+	// NESSE MÉTODO VAMOS DESENHAR
+	// FORMAS GEOMETRICAS, IMAGENS E TEXTOS NA TELA E ETC...
+	public void desenharGraficos() {
+		Graphics g = getGraphics(); //ISSO JÁ ESTAVA AQUI
+		  Graphics bbg = backBuffer.getGraphics();//ISSO TAMBÉM JÁ ESTAVA AQUI...
+		  //AQUI VAMOS MANDAR DESENHAR COISAS NA TELA
+		   bbg.setColor(new Color(100,90,200)); //muda a cor!
+		   bbg.drawRect(50, 75, 100, 100);   //desenha um retângulo sem preenchimento
+		   
+		   bbg.setColor(new Color(200,0,200));  //muda a cor
+		   bbg.drawOval(50, 200, 100, 100);   //desenha uma elipse sem preenchimento
+		             //x=50 y=200 largura=100 altura=100
+		   bbg.drawLine(250, 250, 300, 300);  //desenha uma linha reta
+		             //xPont1 = 250 yPonto1 = 250 || xPonto2 = 300 yPonto2 = 300
+		   bbg.setColor(new Color(100,200,100)); //
+		   bbg.fillRect(50, 350, 100, 100);  //Desenhando um retângulo preenchido!
+		   bbg.setColor(new Color(255,255,0));  //
+		   bbg.fillOval(200, 350, 100, 100);  //Desenhando um Elipse preenchido!
+		  //==================================================================================
+		  g.drawImage(backBuffer, 0, 0, this);//OBS: ISSO DEVE FICAR SEMPRE NO FINAL!
+	}
+
+	// ESSE É O NOSSO MÉTODO INICIALIZAR
+	// AQUI VAMOS INICIALIZAR ALGUMAS CONFIGURAÇÃO DO frame E OUTRAS CONFIGURAÇÕES
+	public void inicializar() {
+		setTitle("Titulo do Jogo!");// SETANDO O TITULO DA JANELA
+		setSize(janelaW, janelaH);// DEFINIDO AS DIMENSÕES DA JANELA
+		setResizable(false);// TIRANDO A PERMISSÃO DO USUÁRIO REDIMENSIONAR A JANELA
+		setDefaultCloseOperation(EXIT_ON_CLOSE);// QUANDO FECHARMOS O frame A APLICAÇÃO PARA DE EXECUTAR
+		setLayout(null);// COM ISSO PODEREMOS DEFINIAR COORDENADA E DIMESÕES DE ELMENTOS DE FORMULARIO
+						// NO NOSSO FRAME
+		setVisible(true);// MUDANDO A VISIBILIDADE DO frame PARA TRUE, ASSIM ELE APARECERÁ
+		backBuffer = new BufferedImage(janelaW, janelaH, BufferedImage.TYPE_INT_RGB);// CRIANDO O NOSSO BUFFER DE IMAGEM
+	}
+
+}

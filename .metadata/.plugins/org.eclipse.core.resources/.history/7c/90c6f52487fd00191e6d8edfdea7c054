@@ -1,0 +1,6 @@
+package view;
+
+public class Tela {
+	public static final int LARGURA = 530;
+	public static final int ALTURA = 530;
+}

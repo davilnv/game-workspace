@@ -1,0 +1,16 @@
+package app;
+
+import controller.ControlePintura;
+import model.Camada;
+import view.Tela;
+
+public class App {
+	public static void main(String[] args) {
+		Tela tela = new Tela();
+		Camada camadaFundo = new Camada(16, 16, 16, 16, "res/tiled.png", "fundo.txt");
+		Camada camadaColisao = new Camada(16, 16, 16, 16, "res/tiled.png", "colisao.txt");
+		Camada camadaTopo = new Camada(16, 16, 16, 16, "res/tiled.png", "topo.txt");
+		
+		ControlePintura controlePintura = new ControlePintura(tela.getMapa(), camadaFundo, camadaColisao, camadaTopo);
+	}
+}

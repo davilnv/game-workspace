@@ -1,0 +1,41 @@
+package controller;
+
+import java.awt.Graphics;
+
+import model.Camada;
+import view.Mapa;
+
+public class ControlePintura implements Runnable {
+	
+	private Mapa mapa;
+	private Graphics g;
+	private Camada camadaFundo, CamadaColisao, CamadaTopo;
+	private Thread thread;
+	
+	
+	
+	public ControlePintura(Mapa mapa, Camada camadaFundo, Camada camadaColisao, Camada camadaTopo) {
+		super();
+		this.mapa = mapa;
+		this.camadaFundo = camadaFundo;
+		CamadaColisao = camadaColisao;
+		CamadaTopo = camadaTopo;
+		
+		this.g = mapa.getGraphics();
+		
+		thread = new Thread(this);
+		
+		thread.start();
+	}
+
+	public void draw() {
+		g.drawImage(camadaFundo, 0, 0, null);
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+}

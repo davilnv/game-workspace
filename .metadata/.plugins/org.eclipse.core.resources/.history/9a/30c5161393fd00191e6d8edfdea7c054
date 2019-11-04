@@ -1,0 +1,9 @@
+package controller;
+
+import view.Mapa;
+
+public class ControlePintura {
+	
+	private Mapa;
+	
+}

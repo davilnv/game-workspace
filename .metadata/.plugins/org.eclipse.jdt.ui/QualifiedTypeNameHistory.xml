@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="controller.Run"/>
+<fullyQualifiedTypeName name="game.Game"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="view.Mapa"/>
+<fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="view.Tela"/>
+<fullyQualifiedTypeName name="model.Camada"/>
+<fullyQualifiedTypeName name="controller.ControlePintura"/>
+<fullyQualifiedTypeName name="controller.ControlePersonagem"/>
+</qualifiedTypeNameHistroy>
