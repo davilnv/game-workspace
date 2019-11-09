@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.imageio.ImageIO;
@@ -93,5 +95,19 @@ public class Camada{
 			}
 		}
 	}
-
+	
+	/**
+	 * @return lista de Rectangle para calculo da colisão 
+	 */
+	public List<Rectangle> montarColisao() {
+		List<Rectangle> tmp = new ArrayList<Rectangle>();
+		for (int i = 0; i < mapaWidth; i++) {
+			for (int j = 0; j < mapaHeight; j++) {
+				if(mapa[i][j] != 0) {
+					tmp.add(new Rectangle( (j * tileHeight), (i * tileWidth), tileWidth, tileHeight));
+				}		
+			}
+		}
+		return tmp;
+	}
 }

@@ -1,8 +1,14 @@
 package controller;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.util.List;
 
 import model.Camada;
+import model.NumerosAleatorios;
 import model.Personagem;
 import view.Mapa;
 
@@ -11,17 +17,21 @@ public class ControlePintura implements Runnable{
 	private Mapa mapa;
 	private Personagem personagem;
 	private Graphics g;
-	private Camada camadaTransparente, camadaFundo, camadaColisao, camadaTopo;
+	private Camada camadaFundo, camadaColisao, camadaTopo;
+	public static List<Rectangle> colisao;
 	private Thread thread;
+	int a = NumerosAleatorios.gerarNumeroAleatorio();
+	int b = NumerosAleatorios.gerarNumeroAleatorio();
 	
-	public ControlePintura(Mapa mapa, Personagem personagem, Camada camadaTransparente, Camada camadaFundo, Camada camadaColisao, Camada camadaTopo) {
+	public ControlePintura(Mapa mapa, Personagem personagem, Camada camadaFundo, Camada camadaColisao, Camada camadaTopo) {
 		super();
 		this.mapa = mapa;
 		this.personagem = personagem;
-		this.camadaTransparente = camadaTransparente;
 		this.camadaFundo = camadaFundo;
 		this.camadaColisao = camadaColisao;
 		this.camadaTopo = camadaTopo;
+
+		colisao = camadaColisao.montarColisao();
 		
 		this.g = mapa.getGraphicsMapa();
 		
@@ -32,18 +42,29 @@ public class ControlePintura implements Runnable{
 
 
 	public void draw() {
-		g.drawImage(camadaTransparente.camada, 0, 0, null);
 		g.drawImage(camadaFundo.camada, 0, 0, null);
 		g.drawImage(camadaColisao.camada, 0, 0, null);
+
+		g.drawImage(personagem.getSprites()[personagem.getAparencia()], personagem.getX(), personagem.getY(), null);
+
 		g.drawImage(camadaTopo.camada, 0, 0, null);
-		g.fillRect(personagem.getX(), personagem.getY(), personagem.getLargura(), personagem.getAltura());
 		
-		g.drawImage(camadaTopo.camada, 0, 0, null);
+		// Mostra os retângulos da colisão
+		
+//		((Graphics2D) g).draw(personagem.getBounds());
+//		
+//		for (Rectangle rectangle : colisao) {
+//			
+//			((Graphics2D) g).draw(rectangle);
+//			
+//		}
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Arial", Font.BOLD, 30));
+		g.drawString(a + " + " + b + " = ", 160, 52);
 		
 	}
 	
 	public void update(){
-		camadaTransparente.montarMapa();
 		camadaFundo.montarMapa();
 		camadaColisao.montarMapa();
 		camadaTopo.montarMapa();
@@ -61,8 +82,5 @@ public class ControlePintura implements Runnable{
 		}
 		
 	}
-	
-	
-	
 	
 }
