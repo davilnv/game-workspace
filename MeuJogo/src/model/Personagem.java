@@ -2,15 +2,17 @@ package model;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import controller.ControlePintura;
 
 public class Personagem extends Sprite {
+	Rectangle personagemRectangle;
+	Inimigo inimigo;
 
-	public Personagem(int aparencia, int largura, int altura, int colunas, int linhas, int x, int y, String endereco) {
+	public Personagem(Inimigo inimigo, int aparencia, int largura, int altura, int colunas, int linhas, int x, int y, String endereco) {
 		super(aparencia, largura, altura, colunas, linhas, x, y, endereco);
+		this.inimigo = inimigo;
 	}
 
 	@Override
@@ -60,12 +62,21 @@ public class Personagem extends Sprite {
 			animar(direcao);
 	}
 	
-	public boolean collision(List<Rectangle> tmp, int x,int y) {
+	public boolean colisao(Rectangle tmp) {
+		Rectangle devil = new Rectangle(inimigo.getX(), inimigo.getY(), 
+				inimigo.getLarguraPersonagem(), inimigo.getAlturaPersonagem());
+		if(tmp.intersects(devil)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean colisao(List<Rectangle> tmp, int x,int y) {
 
-		Rectangle personagem = new Rectangle(getX()+x+5, getY()+y+5, 
+		personagemRectangle = new Rectangle(getX()+x+10, getY()+y+10, 
 				getLarguraPersonagem()-10, getAlturaPersonagem()-10);
 		for(Rectangle rectangle : tmp) {
-			if(rectangle.intersects(personagem)){
+			if(rectangle.intersects(personagemRectangle)){
 				return true;
 			}
 		}
@@ -75,7 +86,7 @@ public class Personagem extends Sprite {
 	//metodos para tratar colis�o Y
 	@Override
 	public void setX(int x) {
-		if(!collision(ControlePintura.colisao, x-getX(), 0))
+		if(!colisao(ControlePintura.colisao, x-getX(), 0) || !colisao(personagemRectangle))
 			super.setX(x);
 
 	}
@@ -83,7 +94,7 @@ public class Personagem extends Sprite {
 	//metodos para tratar colis�o X	
 	@Override
 	public void setY(int y) {
-		if(!collision(ControlePintura.colisao, 0, y-getY()))
+		if(!colisao(ControlePintura.colisao, 0, y-getY()) || !colisao(personagemRectangle))
 			super.setY(y);
 	}
 

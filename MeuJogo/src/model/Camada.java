@@ -104,7 +104,7 @@ public class Camada{
 		for (int i = 0; i < mapaWidth; i++) {
 			for (int j = 0; j < mapaHeight; j++) {
 				if(mapa[i][j] != 0) {
-					tmp.add(new Rectangle( (j * tileHeight), (i * tileWidth), tileWidth, tileHeight));
+					tmp.add(new Rectangle( (j * tileHeight), (i * tileWidth), tileWidth-5, tileHeight-5));
 				}		
 			}
 		}
